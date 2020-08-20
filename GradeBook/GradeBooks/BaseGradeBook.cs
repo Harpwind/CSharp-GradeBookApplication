@@ -13,11 +13,13 @@ namespace GradeBook.GradeBooks
     {
         public string Name { get; set; }
         public GradeBookType Type { get; set; }
+        public bool IsWeighted { get; set; }
         public List<Student> Students { get; set; }
 
-        public BaseGradeBook(string name)
+        public BaseGradeBook(string name, bool weight)
         {
             Name = name;
+            IsWeighted = weight;
             Students = new List<Student>();
         }
 
@@ -110,17 +112,25 @@ namespace GradeBook.GradeBooks
             switch (letterGrade)
             {
                 case 'A':
-                    return 4;
+                    return adjusted(4, studentType);
                 case 'B':
-                    return 3;
+                    return adjusted(3, studentType);
                 case 'C':
-                    return 2;
+                    return adjusted(2, studentType);
                 case 'D':
-                    return 1;
+                    return adjusted(1, studentType);
                 case 'F':
-                    return 0;
+                    return adjusted(0, studentType);
             }
             return 0;
+        }
+
+        private int adjusted(int weighted, StudentType type)
+        {
+            if (IsWeighted && ((type == StudentType.DualEnrolled) || (type == StudentType.Honors)))
+                weighted++;
+
+            return weighted;
         }
 
         public virtual void CalculateStatistics()
