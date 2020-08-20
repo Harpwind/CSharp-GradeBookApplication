@@ -42,14 +42,16 @@ namespace GradeBook.UserInterfaces
             var name = parts[1];
             var type = parts[2];
 
+            BaseGradeBook gradeBook = null;
+
             if (type == "standard")
             {
-                var gradebook = new StandardGradeBook(name);
+                gradeBook = new StandardGradeBook(name);
             }
 
             else if (type == "ranked")
             {
-                var gradebook = new RankedGradeBook(name);
+                gradeBook = new RankedGradeBook(name);
             }
             else
             {
@@ -57,7 +59,7 @@ namespace GradeBook.UserInterfaces
                 return;
             }
 
-            BaseGradeBook gradeBook = null;
+            
 
             Console.WriteLine("Created gradebook {0}.", name);
             GradeBookUserInterface.CommandLoop(gradeBook);
@@ -85,7 +87,7 @@ namespace GradeBook.UserInterfaces
             Console.WriteLine();
             Console.WriteLine("GradeBook accepts the following commands:");
             Console.WriteLine();
-            Console.WriteLine("Create 'Name' - Creates a new gradebook where 'Name' is the name of the gradebook.");
+            Console.WriteLine("Create 'Name' 'Type' - Creates a new gradebook where 'Name' is the name of the gradebook and 'Type' is what type of grading it should use.");
             Console.WriteLine();
             Console.WriteLine("Load 'Name' - Loads the gradebook with the provided 'Name'.");
             Console.WriteLine();
