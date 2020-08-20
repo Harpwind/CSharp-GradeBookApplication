@@ -21,22 +21,22 @@ namespace GradeBook.GradeBooks
 
             int twentyPercentiles = noOfStudents / 5;
 
-            var twentyPercentilesGrade = Students[twentyPercentiles].AverageGrade;
+            var twentyPercentilesGrade = Students[twentyPercentiles -1].AverageGrade;
 
             if (averageGrade >= twentyPercentilesGrade)
                 return 'A';
 
-            twentyPercentilesGrade = Students[2 * twentyPercentiles].AverageGrade;
+            twentyPercentilesGrade = Students[2 * twentyPercentiles -1].AverageGrade;
 
             if (averageGrade >= twentyPercentilesGrade)
                 return 'B';
 
-            twentyPercentilesGrade = Students[3 * twentyPercentiles].AverageGrade;
+            twentyPercentilesGrade = Students[3 * twentyPercentiles -1].AverageGrade;
 
             if (averageGrade >= twentyPercentilesGrade)
                 return 'C';
 
-            twentyPercentilesGrade = Students[4 * twentyPercentiles].AverageGrade;
+            twentyPercentilesGrade = Students[4 * twentyPercentiles -1].AverageGrade;
 
             if (averageGrade >= twentyPercentilesGrade)
                 return 'D';
