@@ -14,10 +14,32 @@ namespace GradeBook.GradeBooks
 
         public override char GetLetterGrade(double averageGrade)
         {
-            if (Students.Count < 5)
+            var noOfStudents = Students.Count;
+            
+            if (noOfStudents < 5)
                 throw new InvalidOperationException("Must have at least 5 students for Ranked Grade");
 
+            int twentyPercentiles = noOfStudents / 5;
 
+            var twentyPercentilesGrade = Students[twentyPercentiles].AverageGrade;
+
+            if (averageGrade >= twentyPercentilesGrade)
+                return 'A';
+
+            twentyPercentilesGrade = Students[2 * twentyPercentiles].AverageGrade;
+
+            if (averageGrade >= twentyPercentilesGrade)
+                return 'B';
+
+            twentyPercentilesGrade = Students[3 * twentyPercentiles].AverageGrade;
+
+            if (averageGrade >= twentyPercentilesGrade)
+                return 'C';
+
+            twentyPercentilesGrade = Students[4 * twentyPercentiles].AverageGrade;
+
+            if (averageGrade >= twentyPercentilesGrade)
+                return 'D';
 
 
             return 'F';
